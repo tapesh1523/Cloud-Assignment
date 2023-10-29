@@ -42,7 +42,7 @@ void printLevelOrder(Node* root)
  
     while (q.empty() == false) {
         Node* node = q.front();
-        cout << node->data << " ";
+        cout << node->val << " ";
         q.pop();
         if (node->left != NULL)
             q.push(node->left);
@@ -51,6 +51,27 @@ void printLevelOrder(Node* root)
         if (node->right != NULL)
             q.push(node->right);
     }
+}
+
+//function to find diameter of a tree
+pair<int,int> diameter(Node* root){
+    if(root==NULL)
+    {
+        pair<int,int> p=make_pair(0,0);
+        return p;
+    }
+    pair<int,int> left=diameter(root->left);
+    pair<int,int> right=diameter(root->right);
+    int op1=left.first;
+    int op2=right.first;
+    int op3=left.second+right.second+1;
+    pair<int,int> ans;
+    ans.first=max(op1,max(op2,op3));
+    ans.second=max(left.second,right.second)+1;
+    return ans;
+}
+int diameterOfBinaryTree(Node* root) {
+    return diameter(root).first-1;
 }
  
 
@@ -69,4 +90,9 @@ int main(){
     
     int result=findMax(root);
     cout<<"Max Value in Tree:"<< result;
+    
+    cout<<"\nPreorder Traversal: ";
+    printLevelOrder(root);
+
+    cout<<"\nDiameter of the tree: "<<diameterOfBinaryTree(root)<<endl;
 }
