@@ -29,6 +29,31 @@ int findMax(Node* root)
     return res;
 }
 
+// Level order traversal Added by Manish Kumar Monu
+
+void printLevelOrder(Node* root)
+{
+    // Base Case
+    if (root == NULL)
+        return;
+    
+    queue<Node*> q;
+    q.push(root);
+ 
+    while (q.empty() == false) {
+        Node* node = q.front();
+        cout << node->data << " ";
+        q.pop();
+        if (node->left != NULL)
+            q.push(node->left);
+ 
+        // Enqueue right child
+        if (node->right != NULL)
+            q.push(node->right);
+    }
+}
+ 
+
 int main(){
     Node *root=new Node(3);
     root->left=new Node(9);
