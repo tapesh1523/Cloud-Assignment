@@ -73,7 +73,20 @@ pair<int,int> diameter(Node* root){
 int diameterOfBinaryTree(Node* root) {
     return diameter(root).first-1;
 }
- 
+
+ void inorder(Node* root, vector<int> &ans)
+{
+    // root is null
+  if(root== NULL)
+       return;
+
+    // for left child
+    inorder(root->left, ans);
+    ans.push_back(root->val);
+    // for right child
+    inorder(root->right, ans);
+}
+
 
 int main(){
     Node *root=new Node(3);
@@ -95,4 +108,14 @@ int main(){
     printLevelOrder(root);
 
     cout<<"\nDiameter of the tree: "<<diameterOfBinaryTree(root)<<endl;
+    
+    vector<int> ans;
+     inorder(root, ans);
+     cout<<"inorder traversal is:  ";
+    //print all elements
+       for(int i = 0;i<11;i++)
+        {
+           cout<<ans[i]<<" ";
+        }
+    cout<<endl;
 }
