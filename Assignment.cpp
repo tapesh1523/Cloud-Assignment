@@ -98,78 +98,65 @@ void postorder(Node *root) {
 }
 
 int main() {
+    Node* root = new Node(3);
+    root->left = new Node(9);
+    root->left->left = new Node(4);
+    root->left->left->right = new Node(5);
+    root->left->left->left = new Node(4);
+    root->left->right = new Node(5);
+    root->right = new Node(20);
+    root->right->left = new Node(15);
+    root->right->right = new Node(7);
+    root->right->right->left = new Node(7);
+    root->right->right->left->left = new Node(6);
 
-	Node *root = new Node(3);
-	root->left = new Node(9);
-	root->left->left = new Node(4);
-	root->left->left->right = new Node(5);
-	root->left->left->left = new Node(4);
-	root->left->right = new Node(5);
-	root->right = new Node(20);
-	root->right->left = new Node(15);
-	root->right->right = new Node(7);
-	root->right->right->left = new Node(7);
-	root->right->right->left->left = new Node(6);
+    int choice;
+    do {
+        cout << "Binary Tree Operations Menu:" << endl;
+        cout << "1. Find Maximum Value" << endl;
+        cout << "2. Level Order Traversal" << endl;
+        cout << "3. PreOrder Traversal" << endl;
+        cout << "4. InOrder Traversal" << endl;
+        cout << "5. PostOrder Traversal" << endl;
+        cout << "6. Diameter of the Tree" << endl;
+        cout << "7. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-	int result = findMax(root);
-	cout << "Max Value in Tree:" << result;
-
-	cout << "\nLevel Order Traversal: ";
-	printLevelOrder(root);
-
-	cout << "\n PreOrder Traversal :";
-	preorder(root);
-
-	cout << "\n InOrder Traversal :";
-	inorder(root);
-
-	cout << "\n PostOrder Traversal :";
-	postorder(root);
-	cout << "\nDiameter of the tree: " << diameterOfBinaryTree(root) << endl;
-=======
- void inorder(Node* root, vector<int> &ans)
-{
-    // root is null
-  if(root== NULL)
-       return;
-
-    // for left child
-    inorder(root->left, ans);
-    ans.push_back(root->val);
-    // for right child
-    inorder(root->right, ans);
-}
-
-
-int main(){
-    Node *root=new Node(3);
-    root->left=new Node(9);
-    root->left->left=new Node(4);
-    root->left->left->right=new Node(5);
-    root->left->left->left=new Node(4);
-    root->left->right=new Node(5);  
-    root->right=new Node(20);
-    root->right->left=new Node(15);
-    root->right->right=new Node(7);
-    root->right->right->left=new Node(7);
-    root->right->right->left->left=new Node(6);
-    
-    int result=findMax(root);
-    cout<<"Max Value in Tree:"<< result;
-    
-    cout<<"\nPreorder Traversal: ";
-    printLevelOrder(root);
-
-    cout<<"\nDiameter of the tree: "<<diameterOfBinaryTree(root)<<endl;
-    
-    vector<int> ans;
-     inorder(root, ans);
-     cout<<"inorder traversal is:  ";
-    //print all elements
-       for(int i = 0;i<11;i++)
-        {
-           cout<<ans[i]<<" ";
+        switch (choice) {
+            case 1:
+                cout << "Max Value in Tree: " << findMax(root) << endl;
+                break;
+            case 2:
+                cout << "Level Order Traversal: ";
+                printLevelOrder(root);
+                cout << endl;
+                break;
+            case 3:
+                cout << "PreOrder Traversal: ";
+                preorder(root);
+                cout << endl;
+                break;
+            case 4:
+                cout << "InOrder Traversal: ";
+                inorder(root);
+                cout << endl;
+                break;
+            case 5:
+                cout << "PostOrder Traversal: ";
+                postorder(root);
+                cout << endl;
+                break;
+            case 6:
+                cout << "Diameter of the Tree: " << diameterOfBinaryTree(root) << endl;
+                break;
+            case 7:
+                cout << "Exiting the program." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please enter a valid option." << endl;
         }
-    cout<<endl;
-// >>>>>>> main
+    } while (choice != 7);
+
+    return 0;
 }
